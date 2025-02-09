@@ -5,9 +5,12 @@
 # HealthyFit Blog 
 ### 건강과 운동 정보를 제공하는 블로그의 핵심을 간결하게 담은 이름입니다.
 
-## 배포 및 CICD
+## 개발 과정 
 
-> **Azure** : [예정]() <br>
+<div align="center">
+  <img width="100%" alt="image" src="https://github.com/user-attachments/assets/7378c3db-d530-4978-be7d-ed0d4fdce2a8">
+</div>
+
 
 ## 웹 개발팀 소개
 
@@ -18,6 +21,11 @@
 | Web Dev | 
 
 > **개발기간: 2025.02 ~ 2025.03**
+
+## 배포 및 CICD
+
+> **Azure** : [예정]() <br>
+
 
 ## 프로젝트 소개
 
@@ -50,9 +58,6 @@ HealthyFit Blog는 건강과 운동에 대한 정보를 쉽게 공유하고 기�
 ![JPA](https://img.shields.io/badge/JPA-3.0-blue?style=for-the-badge&logo=java&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=Javascript&logoColor=white)
 ![Css](https://img.shields.io/badge/Css-1572B6?style=for-the-badge&logo=css3&logoColor=fff)
-
-### Tool
-![User Story Map](https://img.shields.io/badge/Tool-User_Story_Map-FF6600?style=for-the-badge)
 
 ## 화면 소개 
 | 메인 페이지  |  세부 페이지   |
