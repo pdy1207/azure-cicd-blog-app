@@ -51,6 +51,9 @@ HealthyFit Blog는 건강과 운동에 대한 정보를 쉽게 공유하고 기�
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=Javascript&logoColor=white)
 ![Css](https://img.shields.io/badge/Css-1572B6?style=for-the-badge&logo=css3&logoColor=fff)
 
+### Tool
+![User Story Map](https://img.shields.io/badge/Tool-User_Story_Map-FF6600?style=for-the-badge)
+
 ## 화면 소개 
 | 메인 페이지  |  세부 페이지   |
 | :-------------------------------------------: | :------------: |
