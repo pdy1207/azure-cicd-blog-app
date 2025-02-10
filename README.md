@@ -62,7 +62,7 @@ HealthyFit Blog는 건강과 운동에 대한 정보를 쉽게 공유하고 기�
 ## 화면 소개 
 | 메인 페이지  |  세부 페이지   |
 | :-------------------------------------------: | :------------: |
-|  <img width="500" src="https://github.com/user-attachments/assets/5dc7fa2a-e17b-4a8c-a2b2-ae0e2d1e362b"/>  |  <img width="500" src="https://placehold.co/300"/> |  
+|  <img width="500" src="https://github.com/user-attachments/assets/383cd2b4-1e84-454b-b802-7db889c9c5cd"/>  |  <img width="500" src="https://placehold.co/300"/> |  
 | **댓글 페이지**   |  **글 리스트 사진**  |  
 |  <img width="500" src="https://placehold.co/300"/>    |  <img width="500" src="https://placehold.co/300"/>   |
 | **회원가입** | **로그인** |  
