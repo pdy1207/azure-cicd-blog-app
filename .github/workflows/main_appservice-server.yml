@@ -1,6 +1,3 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-
 name: Build and deploy JAR app to Azure Web App - appService-server
 
 on:
@@ -13,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: read #This is required for actions/checkout
+      contents: read
 
     steps:
       - uses: actions/checkout@v4
@@ -24,14 +21,30 @@ jobs:
           java-version: '17'
           distribution: 'microsoft'
 
-      - name: Build with Maven
-        run: mvn clean install
+      - name: Grant execute permission to gradlew
+        run: chmod +x gradlew
+
+      - name: Build with Gradle
+        run: ./gradlew build --no-daemon  # 🔹 build 실행
+
+      - name: List build/libs contents (확인용)
+        run: ls -alh build/libs  # 🔹 JAR 생성 확인
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
-          name: java-app
-          path: '${{ github.workspace }}/target/*.jar'
+          name: java-app  # 🔹 업로드 이름
+          path: build/libs/builder-0.0.1-SNAPSHOT.jar  # 🔹 정확한 파일명 지정
+
+      - name: Send Slack notification (Build Success)
+        if: success()  # 빌드 성공 시 알림
+        run: |
+          curl -X POST -H 'Content-type: application/json' --data '{"text":"GitHub Actions Build Success!"}' ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: Send Slack notification (Build Failure)
+        if: failure()  # 빌드 실패 시 알림
+        run: |
+          curl -X POST -H 'Content-type: application/json' --data '{"text":"GitHub Actions Build Failed!"}' ${{ secrets.SLACK_WEBHOOK_URL }}
 
   deploy:
     runs-on: ubuntu-latest
@@ -40,21 +53,24 @@ jobs:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
-      id-token: write #This is required for requesting the JWT
-      contents: read #This is required for actions/checkout
-  
+      id-token: write
+      contents: read
+
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
-          name: java-app
-      
+          name: java-app  # 🔹 업로드한 이름과 동일하게 설정
+
+      - name: List downloaded artifacts (확인용)
+        run: ls -alh  # 🔹 java-app 폴더가 생성되었는지 확인
+
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_F8A1B92A16034917A91891420BD30DC8 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_15BE4BD80EA04C9E8E4A5684ACA77D31 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_04D12FD234CE4E0CB89AAAD62405D506 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_8369BA4901134AEC99E2DD085F86B8FD  }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_2D42F1C9E20C4D279D8D50CFE23227C5  }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_EA35CABB7D5F4016AB89CF03DAA01D6C  }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
@@ -62,5 +78,16 @@ jobs:
         with:
           app-name: 'appService-server'
           slot-name: 'Production'
-          package: '*.jar'
-          
+          package: builder-0.0.1-SNAPSHOT.jar  # 🔹 다운로드된 JAR 직접 지정
+        env:
+          PORT: 80
+
+      - name: Send Slack notification (Deploy Success)
+        if: success()  # 배포 성공 시 알림
+        run: |
+          curl -X POST -H 'Content-type: application/json' --data '{"text":"GitHub Actions Deployment to Azure Web App Success!"}' ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: Send Slack notification (Deploy Failure)
+        if: failure()  # 배포 실패 시 알림
+        run: |
+          curl -X POST -H 'Content-type: application/json' --data '{"text":"GitHub Actions Deployment to Azure Web App Failed!"}' ${{ secrets.SLACK_WEBHOOK_URL }}
