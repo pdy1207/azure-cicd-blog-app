@@ -1,0 +1,47 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  opacity: 0.8;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.fof {
+  text-align: center;
+  height: 18vh;
+}
+
+h1 {
+  color: #333;
+  font-size: 22px;
+  margin-bottom: 2px;
+}
+p {
+  color: #959595;
+  font-size: 14px;
+  line-height: 2px;
+  margin-bottom: 25px;
+}
+
+a {
+  text-decoration: unset;
+  cursor: pointer;
+  background-color: #fff;
+  border: 1px solid #00c6be;
+  border-radius: 16px;
+  color: #00c6be;
+  display: inline-block;
+  font-size: 13px;
+  height: 30px;
+  line-height: 32px;
+  margin-top: 25px;
+  padding: 0 20px;
+}

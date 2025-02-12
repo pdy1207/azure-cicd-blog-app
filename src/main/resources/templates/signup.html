@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="dypark" />
+    <meta
+            name="Description"
+            content="안녕하세요. 근육성장의 비밀, 여기서 모두 알려드립니다."
+    />
+    <meta name="keywords" content="헬스, 근성장, 근육, 벌크업, 분할법" />
+    <meta
+            property="og:title"
+            content="강인한 정신력과 건강한 육체, 빌더들의 블로그"
+    />
+    <meta property="og:description" content="빌더의 블로그" />
+    <meta
+            property="og:image"
+            content="https://blogpfthumb-phinf.pstatic.net/20150118_39/nabuilder_1421574448924qfxNx_PNG/man-305084_640.png?type=w161"
+    />
+    <meta property="og:url" content="https://appservice-server-g0h2f7eqbhana3dz.koreacentral-01.azurewebsites.net/" />
+    <title>빌더들의 블로그</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/signup.css" />
+</head>
+
+<body>
+<div>
+    <form action="/register" method="POST">
+        <div class="title">
+            <div class="row"><a href="/" target="_blank">BUILDER'S BLOG</a></div>
+        </div>
+        <div class="row">
+            <table id="tbl_info" class="table table-user">
+                <tbody>
+                <tr id="tr_email">
+                    <th>닉네임<span>*</span></th>
+                    <td>
+                        <input
+                                id="txt_email"
+                                class="input-text w400"
+                                type="text"
+                                name="userKey"
+                                placeholder="닉네임을 입력해주세요."
+                        /><br /><br />
+                        <span class="box-content">
+                    블로그에서 이용하실 닉네임을 입력해주세요.
+                  </span>
+                    </td>
+                </tr>
+                <tr id="tr_name">
+                    <th>아이디<span>*</span></th>
+                    <td>
+                        <input
+                                id="txt_name"
+                                class="input-text w400"
+                                type="id"
+                                name="userID"
+                                placeholder="아이디"
+                                oninput="checkUsernameConstraints()"
+                        /><br /><br />
+                        <span id="username_constraints_message" class="box-content">
+                    회원정보로 등록하실 아이디를 입력해주세요. (영문 또는 숫자
+                    4~10자, 한글 포함 시 2~10자)</span
+                        >
+                    </td>
+                </tr>
+
+                <tr id="tr_pw">
+                    <th>비밀번호<span>*</span></th>
+                    <td>
+                        <div id="div_password_Y">
+                            <input
+                                    id="txt_password"
+                                    class="input-text w400"
+                                    type="password"
+                                    placeholder="비밀번호"
+                                    name="txtPW"
+                                    oninput="checkPasswordMatch()"
+                            /><br /><br />
+                            <input
+                                    id="txt_password2"
+                                    class="input-text w400"
+                                    type="password"
+                                    placeholder="비밀번호 확인"
+                                    oninput="checkPasswordMatch()"
+                            /><br /><br />
+                            <span id="password_match_message" class="box-content">
+                      특수문자(예: !@#$ 등) 1자 이상을 포함한 10~15 글자의
+                      비밀번호 입니다.
+                    </span>
+                        </div>
+                    </td>
+                </tr>
+                <tr id="tr_intro">
+                    <th>자기소개</th>
+                    <td>
+                        <input
+                                id="txt_intro"
+                                class="input-text w400"
+                                type="text"
+                                name="txtIntro"
+                                placeholder="간단하게 소개를 해주세요."
+                        />
+                        <br />
+                        <br />
+                        <div class="w400 tr" style="text-align: right">
+                            <span id="lbl_limit"></span>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row" style="padding: 24px 0 0 40px">
+            <div
+                    class="row tc"
+                    style="padding: 50px 0 55px 0; text-align: center"
+            >
+                <a href="/">
+                    <button
+                            id="btn_submit"
+                            type="submit"
+                            class="btn btn-mint w400 fs-16"
+                            style="height: 65px"
+                    >
+                        회원가입
+                    </button>
+                </a>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

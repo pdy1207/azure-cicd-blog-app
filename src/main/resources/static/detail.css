@@ -1,0 +1,217 @@
+@import url("./styles.css");
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&family=Noto+Serif+KR:wght@200..900&display=swap");
+
+.wrap {
+  width: 780px;
+  font-family: "Noto Serif KR", serif;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  height: 280px;
+  flex-direction: column;
+  word-wrap: break-word;
+  font-size: 34pt;
+  line-height: 40pt;
+}
+
+.wrap-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.wrap .wrap-content {
+  color: #222 !important;
+  font-size: 12pt;
+  line-height: 18pt;
+  opacity: 0.8;
+}
+
+.wrap div {
+  font-size: 20px;
+  color: #bfbfbf;
+  font-family: Georgia, sans-serif;
+  font-style: italic;
+  margin-top: 10px;
+}
+
+#content {
+  font-family: "Nanum Gothic Coding", serif !important;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 11pt;
+  letter-spacing: 0.8px;
+  line-height: 22pt;
+  color: #333;
+}
+/* 프로그레스 바 스타일 */
+#progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 4px; /* 프로그레스 바 높이 */
+  background: #00c6be; /* 강조되는 색 */
+  transition: width 0.1s ease-out;
+  z-index: 9999;
+}
+
+.content-box {
+  margin-top: 100px;
+}
+
+.info-state {
+  border-top: 1px solid #eee;
+  margin: 0 auto;
+  padding: 32px 0 70px;
+  width: 700px;
+}
+.wrap_comment_btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.wrap_comment_btn button {
+  cursor: pointer;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #bbb;
+  border-radius: 42px;
+  color: #666;
+  font-size: 13px;
+  padding: 8px 23px;
+}
+
+.info-comment,
+.comment_content {
+  font-family: "Nanum Gothic Coding", serif !important;
+  margin: 0 auto;
+  padding: 32px 0 70px;
+  border-bottom: 1px solid #ddd;
+  height: 30px;
+  margin: 0 auto;
+  padding-bottom: 15px;
+  width: 700px;
+}
+
+.tit_comment {
+  font-size: 16px;
+  font-weight: normal;
+  margin-left: -1px;
+  padding-top: 4px;
+}
+.comment_content {
+  border-bottom: unset;
+}
+
+.comment {
+  align-items: start;
+  display: flex;
+  justify-content: space-between;
+  margin: 36px 0;
+  width: 100%;
+}
+
+.link_profile {
+  overflow: visible;
+  padding: 0;
+  position: relative;
+}
+
+.img_thumb {
+  background-color: #fff;
+  border-radius: 42px;
+  height: 32px;
+  width: 32px;
+}
+
+.cont_info {
+  padding-left: 8px;
+  width: calc(100% - 32px);
+}
+
+.info_append {
+  font-size: 12px;
+  line-height: 14px;
+  width: 100%;
+}
+
+.tit_userid {
+  align-items: center;
+  display: flex;
+}
+.link_userid {
+  color: #111;
+  font-size: 13px;
+  line-height: 22px;
+}
+
+.txt_time {
+  color: #959595;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 20px;
+}
+
+.desc_comment {
+  margin-top: 12px;
+  word-wrap: break-word;
+  clear: left;
+  color: #111;
+  font-size: 15px;
+  line-height: 24px;
+}
+
+.btn_reply {
+  display: block;
+  font-size: 12px;
+  line-height: 20px;
+  color: #959595;
+  margin-top: 14px;
+  background-color: transparent;
+  border: 0;
+  border-radius: 0;
+  cursor: pointer;
+  outline: none;
+}
+
+.comment_input {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px;
+  margin-top: 20px;
+  border: 1px solid #ddd;
+}
+
+.comment_input textarea {
+  width: 97%;
+  height: 80px;
+  padding: 10px;
+  border: unset;
+  resize: none;
+  font-family: "Noto Serif KR", serif;
+}
+
+.comment_input button {
+  align-self: flex-end;
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  background-color: #000;
+  border-color: #000;
+  color: #fff;
+  font-weight: 600;
+}
+
+.comment_input button:hover {
+  background-color: #0056b3;
+}
+
+textarea:focus {
+  outline: none;
+  border: unset;
+}

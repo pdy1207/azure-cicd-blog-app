@@ -1,6 +1,28 @@
-<div>에러페이지임</div>
-<p th:text="${status}"></p>
-<p th:text="${error}"></p>
-<p th:text="${path}"></p>
-<p th:text="${message}"></p>
-<p th:text="${exception}"></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>빌더들의 블로그</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="error.css" />
+</head>
+<body>
+<div class="main">
+    <div class="fof">
+        <h1>원하시는 페이지를 찾을 수 없습니다.</h1>
+        <p>찾으려는 페이지의 주소가 잘못 입력되었거나,</p>
+        <p>주소의 변경 혹은 삭제로 인해 사용하실 수 없습니다.</p>
+        <p>입력하신 페이지의 주소가 정확한지 다시 한번 확인해 주세요.</p>
+    </div>
+    <a href="/">서비스 홈 가기</a>
+    <!--임시 -->
+    <p th:text="${status}"></p>
+    <p th:text="${error}"></p>
+    <p th:text="${path}"></p>
+    <p th:text="${message}"></p>
+    <p th:text="${exception}"></p>
+    <!--임시 -->
+</div>
+</body>
+</html>

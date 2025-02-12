@@ -7,7 +7,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class BasicController {
     @GetMapping("/")
-    String hello(){
+    String index(){
         return "index.html";
+    }
+
+    @GetMapping("/detail")
+    String detail(){
+        return "detail.html";
+    }
+
+    @GetMapping("/login")
+    String login(){
+        return "login.html";
+    }
+
+    @GetMapping("/signup")
+    String signup(){
+        return "signup.html";
     }
 }
