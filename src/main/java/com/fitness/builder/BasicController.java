@@ -25,4 +25,14 @@ public class BasicController {
     String signup(){
         return "signup.html";
     }
+
+    @GetMapping("/write")
+    String write(){
+        return "write.html";
+    }
+
+    @GetMapping("/my-page")
+    String myPage(){
+        return "mypage.html";
+    }
 }
