@@ -93,3 +93,12 @@ a {
   text-decoration: unset;
   color: inherit;
 }
+
+.error-message {
+    color: red;
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    font-weight: 200;
+    font-size: 10px;
+    width: 100%;
+}

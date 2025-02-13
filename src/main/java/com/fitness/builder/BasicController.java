@@ -1,10 +1,12 @@
 package com.fitness.builder;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
+@RequiredArgsConstructor
 public class BasicController {
     @GetMapping("/")
     String index(){
@@ -14,16 +16,6 @@ public class BasicController {
     @GetMapping("/detail")
     String detail(){
         return "detail.html";
-    }
-
-    @GetMapping("/login")
-    String login(){
-        return "login.html";
-    }
-
-    @GetMapping("/signup")
-    String signup(){
-        return "signup.html";
     }
 
     @GetMapping("/write")

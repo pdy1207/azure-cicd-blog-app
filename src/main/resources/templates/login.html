@@ -52,15 +52,16 @@
                             type="id"
                             placeholder="아아디를 입력해주세요"
                             style="margin-bottom: 7px"
-                            name="userKey"
+                            name="username"
                     />
                     <input
                             class="input-text"
                             type="password"
                             placeholder="비밀번호를 입력해주세요"
-                            name="userEmail"
+                            name="password"
                     />
                 </div>
+                <span class="error-message" th:if="${param.error}" >아이디 또는 비밀번호를 확인해주세요.</span>
                 <div class="login-box">
                     <button type="submit" class="btn-login">로그인</button>
                 </div>

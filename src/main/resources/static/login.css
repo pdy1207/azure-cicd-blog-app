@@ -88,3 +88,14 @@ input:-webkit-autofill {
   background-color: transparent !important;
   box-shadow: 0 0 0px 1000px white inset !important;
 }
+
+.error-message {
+    margin-top: 13px;
+    display: block;
+    color: red;
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    font-weight: 200;
+    font-size: 10px;
+    width: 96%;
+}

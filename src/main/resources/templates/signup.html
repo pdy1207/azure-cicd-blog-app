@@ -28,9 +28,13 @@
 <body>
 <div>
     <form action="/register" method="POST">
-        <div class="title">
-            <div class="row"><a href="/" target="_blank">BUILDER'S BLOG</a></div>
+        <div class="title" >
+            <div class="row" style="display: flex;"><a href="/" style="width: 313px;
+    display: block;" target="_blank">BUILDER'S BLOG</a>
+                <span class="error-message" th:if="${errorMessage}"  th:text="${errorMessage}"></span>
+            </div>
         </div>
+
         <div class="row">
             <table id="tbl_info" class="table table-user">
                 <tbody>
@@ -41,8 +45,9 @@
                                 id="txt_email"
                                 class="input-text w400"
                                 type="text"
-                                name="userKey"
+                                name="username"
                                 placeholder="닉네임을 입력해주세요."
+                                data-error-message="닉네임 값을 입력해주세요."
                         /><br /><br />
                         <span class="box-content">
                     블로그에서 이용하실 닉네임을 입력해주세요.
@@ -56,9 +61,10 @@
                                 id="txt_name"
                                 class="input-text w400"
                                 type="id"
-                                name="userID"
+                                name="userId"
                                 placeholder="아이디"
                                 oninput="checkUsernameConstraints()"
+                                data-error-message="아이디가 비어있습니다."
                         /><br /><br />
                         <span id="username_constraints_message" class="box-content">
                     회원정보로 등록하실 아이디를 입력해주세요. (영문 또는 숫자
@@ -76,8 +82,9 @@
                                     class="input-text w400"
                                     type="password"
                                     placeholder="비밀번호"
-                                    name="txtPW"
+                                    name="password"
                                     oninput="checkPasswordMatch()"
+                                    data-error-message="비밀번호가 비어있습니다."
                             /><br /><br />
                             <input
                                     id="txt_password2"
@@ -100,7 +107,7 @@
                                 id="txt_intro"
                                 class="input-text w400"
                                 type="text"
-                                name="txtIntro"
+                                name="introduction"
                                 placeholder="간단하게 소개를 해주세요."
                         />
                         <br />
@@ -118,7 +125,6 @@
                     class="row tc"
                     style="padding: 50px 0 55px 0; text-align: center"
             >
-                <a href="/">
                     <button
                             id="btn_submit"
                             type="submit"
@@ -127,10 +133,11 @@
                     >
                         회원가입
                     </button>
-                </a>
             </div>
         </div>
     </form>
 </div>
+
+    <script src="/signup.js"></script>
 </body>
 </html>
