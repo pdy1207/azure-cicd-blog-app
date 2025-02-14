@@ -23,13 +23,17 @@ public class SecurityConfig {
 //        CSRF 공격 제어 off
         http.csrf((csrf) -> csrf.disable());
         http.authorizeHttpRequests((authorize) ->
-                authorize.requestMatchers("/**").permitAll()
+                authorize
+                        .requestMatchers("/login").not().authenticated()  // 로그인된 사용자는 로그인 페이지 접근 불가
+                        .requestMatchers("/write").authenticated()  // 로그인한 사용자만 접근 가능
+                        .requestMatchers("/my-page").authenticated()
+                        .requestMatchers("/**").permitAll() // 나머지 URL은 모두 허용
         );
 
         http.formLogin((formLogin) -> formLogin.loginPage("/login")
                         .defaultSuccessUrl("/")
                         .failureUrl("/login?error=true")
-                        //실패시 보내는 url
+                //실패시 보내는 url
         );
 
         http.logout(logout -> logout.logoutUrl("/logout"));

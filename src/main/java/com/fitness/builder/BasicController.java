@@ -21,9 +21,6 @@ public class BasicController {
         return "detail.html";
     }
 
-    @GetMapping("/write")
-    String write(){
-        return "write.html";
-    }
+
 
 }

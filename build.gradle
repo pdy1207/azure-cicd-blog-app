@@ -30,6 +30,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security' // spring-security
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6:3.1.1.RELEASE' // spring-security
 	implementation 'org.springframework.session:spring-session-jdbc' // session DB 저장용
+	implementation 'io.awspring.cloud:spring-cloud-aws-starter-s3:3.1.1' // aws s3
 }
 
 tasks.named('test') {
