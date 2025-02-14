@@ -24,6 +24,8 @@ public class Item {
     private LocalDateTime createAt;
     private LocalDateTime updateAt;
 
+    private String imageUrl;
+
     @PrePersist
     public void prePersist() {
         createAt = updateAt = LocalDateTime.now();
