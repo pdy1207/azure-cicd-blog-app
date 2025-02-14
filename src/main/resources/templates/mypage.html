@@ -28,7 +28,7 @@
 
 <body>
 <div>
-    <form action="/register" method="POST">
+    <form id="mypageForm" action="/mypage/update" method="POST">
         <div class="title">
             <div class="row">
                 <a href="/" target="_blank">MY PAGE</a>
@@ -73,10 +73,16 @@
                     <th>닉네임<span>*</span></th>
                     <td>
                         <input
+                                name="id"
+                                th:value="${id}"
+                                style="display: none;"
+                        />
+                        <input
                                 id="txt_email"
                                 class="input-text w400"
                                 type="text"
-                                name="userKey"
+                                name="username"
+                                th:value="${username}"
                                 placeholder="닉네임을 입력해주세요."
                         /><br /><br />
                         <span class="box-content">
@@ -91,8 +97,9 @@
                                 id="txt_name"
                                 class="input-text w400"
                                 type="id"
-                                name="userID"
+                                name="userId"
                                 placeholder="아이디"
+                                th:value="${userId}"
                                 oninput="checkUsernameConstraints()"
                         /><br /><br />
                         <span id="username_constraints_message" class="box-content">
@@ -111,7 +118,7 @@
                                     class="input-text w400"
                                     type="password"
                                     placeholder="비밀번호"
-                                    name="txtPW"
+                                    name="password"
                                     oninput="checkPasswordMatch()"
                             /><br /><br />
                             <input
@@ -135,7 +142,8 @@
                                 id="txt_intro"
                                 class="input-text w400"
                                 type="text"
-                                name="txtIntro"
+                                name="introduction"
+                                th:value="${introduction}"
                                 placeholder="간단하게 소개를 해주세요."
                         />
                         <br />
@@ -167,5 +175,56 @@
         </div>
     </form>
 </div>
+<script>
+    document.getElementById("mypageForm").addEventListener("submit", function (event) {
+        event.preventDefault(); // 기본 폼 제출 막기
+
+        let formData = new FormData(this);
+
+        fetch("/mypage/update", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => {
+            if (response.ok) {
+                alert("정보가 성공적으로 수정되었습니다.");
+                window.location.href = "/my-page"; // 마이페이지로 이동
+            } else {
+                alert("수정 중 오류가 발생했습니다.");
+            }
+        })
+        .catch(error => console.error("Error:", error));
+    });
+
+    // 아이디 형식 확인 (영문/숫자 4~10자, 한글 포함 시 2~10자)
+    function checkUsernameConstraints() {
+        const userId = document.getElementById("txt_name").value;
+        const usernameConstraintsMessage = document.getElementById("username_constraints_message");
+        const usernamePattern = /^(?=.*[a-zA-Z0-9가-힣])[A-Za-z0-9가-힣]{2,10}$/;
+
+        if (!usernamePattern.test(userId)) {
+            usernameConstraintsMessage.style.color = "red";
+            usernameConstraintsMessage.textContent = "아이디는 영문 또는 숫자 4~10자, 한글 포함 시 2~10자여야 합니다.";
+        } else {
+            usernameConstraintsMessage.style.color = "green";
+            usernameConstraintsMessage.textContent = "아이디가 유효합니다.";
+        }
+    }
+
+     // 비밀번호와 비밀번호 확인 일치 여부 검사
+    function checkPasswordMatch() {
+        const password = document.getElementById("txt_password").value;
+        const password2 = document.getElementById("txt_password2").value;
+        const passwordMatchMessage = document.getElementById("password_match_message");
+
+        if (password !== password2) {
+            passwordMatchMessage.style.color = "red";
+            passwordMatchMessage.textContent = "비밀번호가 일치하지 않습니다.";
+        } else {
+            passwordMatchMessage.style.color = "green";
+            passwordMatchMessage.textContent = "비밀번호가 일치합니다.";
+        }
+    }
+</script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 package com.fitness.builder.Member;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -30,10 +31,12 @@ public class MyUserDetailsService implements UserDetailsService {
 
         String password = member.getPassword();
 
-        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("일반유저"));
 
-        return new User(member.getUserId(), password, authorities); // 권한 추가
+        return new CustomUser(member.getId(), member.getUserId(), password, member.getUsername(),member.getIntroduction(), authorities);
+
+
     }
 
 

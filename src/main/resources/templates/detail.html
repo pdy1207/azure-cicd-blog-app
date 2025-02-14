@@ -43,7 +43,16 @@
     </div>
     <nav>
         <ul>
-            <li>
+            <li sec:authorize="isAuthenticated()">
+                <a href="/my-page" class="login" target="_blank">내 정보 수정</a>
+            </li>
+            <li sec:authorize="isAuthenticated()">
+                <a href="/write" class="login" target="_blank">글 작성하기</a>
+            </li>
+            <li sec:authorize="isAuthenticated()">
+                <a href="/logout" class="login" target="_blank">로그아웃</a>
+            </li>
+            <li sec:authorize="!isAuthenticated()">
                 <a href="/login" class="login" target="_blank">시작하기</a>
             </li>
             <!--

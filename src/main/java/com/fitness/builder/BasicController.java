@@ -1,6 +1,9 @@
 package com.fitness.builder;
 
+import com.fitness.builder.Member.CustomUser;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,8 +26,4 @@ public class BasicController {
         return "write.html";
     }
 
-    @GetMapping("/my-page")
-    String myPage(){
-        return "mypage.html";
-    }
 }

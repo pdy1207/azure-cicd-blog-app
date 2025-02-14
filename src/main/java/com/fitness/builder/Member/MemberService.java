@@ -5,6 +5,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -72,5 +73,44 @@ public class MemberService {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(password);
         return matcher.matches();
+    }
+
+    public void updateMember(Long id, String userId, String username, String password, String introduction) {
+        Optional<Member> optionalUser = memberRepository.findById(id);
+
+        if (optionalUser.isEmpty()) {
+            throw new IllegalArgumentException("사용자 정보를 찾을 수 없습니다.");
+        }
+
+        Member existingUser = optionalUser.get();
+
+        // 값 검증 후 업데이트
+        if (userId != null && !userId.trim().isEmpty()) {
+            if (!isValidUserId(userId)) {
+                throw new IllegalArgumentException("아이디는 영문 또는 숫자 4~10자, 한글 포함 시 2~10자로 입력해주세요.");
+            }
+            existingUser.setUserId(userId);
+        }
+
+        if (username != null && !username.trim().isEmpty()) {
+            if (memberRepository.existsByUsername(username)) {
+                throw new IllegalArgumentException("이미 존재하는 닉네임 입니다.");
+            }
+            existingUser.setUsername(username);
+        }
+
+        if (introduction != null) {
+            existingUser.setIntroduction(introduction);
+        }
+
+        // 비밀번호 암호화 후 업데이트
+        if (password != null && !password.trim().isEmpty()) {
+            if (!isValidPassword(password)) {
+                throw new IllegalArgumentException("비밀번호는 특수문자 1자 이상을 포함한 10~15 글자여야 합니다.");
+            }
+            existingUser.setPassword(passwordEncoder.encode(password));
+        }
+
+        memberRepository.save(existingUser);
     }
 }
