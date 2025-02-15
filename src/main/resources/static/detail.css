@@ -27,13 +27,28 @@
   opacity: 0.8;
 }
 
-.wrap div {
+.wrap .author {
   font-size: 20px;
   color: #bfbfbf;
-  font-family: Georgia, sans-serif;
+  font-family: Georgia, sans-serif !important;
   font-style: italic;
   margin-top: 10px;
+      margin: 0;
+      width: 100%;
+      text-align: right;
+      margin-bottom: 10px;
 }
+
+.wrap div{
+font-family: "Nanum Gothic Coding", serif !important;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 11pt;
+    letter-spacing: 0.8px;
+    line-height: 22pt;
+    color: #333;
+}
+
 
 #content {
   font-family: "Nanum Gothic Coding", serif !important;

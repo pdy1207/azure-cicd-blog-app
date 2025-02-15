@@ -24,7 +24,8 @@ window.addEventListener("scroll", () => {
 /* 스크롤 */
 
 $("#carousel div").click(function () {
-  window.open("/detail", "_blank");
+  var id = $(this).data('id'); // 클릭된 div의 data-id 값 가져오기
+  window.open("/detail-list/" + id, "_blank"); // 해당 ID로 URL 열기
 });
 
 /* 캐러셀 */

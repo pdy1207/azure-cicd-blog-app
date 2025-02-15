@@ -1,4 +1,4 @@
-package com.fitness.builder.Item.Basic;
+package com.fitness.builder.Basic;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

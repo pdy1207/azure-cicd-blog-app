@@ -44,6 +44,15 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <ul>
+                        <th:block th:each="item : ${items}">
+                            <li>
+                                <h3 th:text="${item.title}"></h3>
+                                <p th:text="${item.content}"></p>
+                                <p th:text="${item}"></p>
+                            </li>
+                        </th:block>
+                    </ul>
                     <tr>
                         <td><a href="#" class="post-link">글 제목 1</a></td>
                         <td>부제목</td>

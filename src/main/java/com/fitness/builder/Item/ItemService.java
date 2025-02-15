@@ -29,4 +29,13 @@ public class ItemService {
 
         return savedItem;
     }
+
+    public List<Item> getAllPosts() {
+        return itemRepository.findAll();
+    }
+
+    public Item getPostById(Long id){
+        return itemRepository.findById(id).orElseThrow(() -> new RuntimeException("게시글을 찾을 수 없습니다."));
+    }
+
 }

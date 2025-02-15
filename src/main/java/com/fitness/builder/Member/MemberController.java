@@ -1,10 +1,13 @@
 package com.fitness.builder.Member;
 
+import com.fitness.builder.Item.Item;
+import com.fitness.builder.Item.ItemRepository;
+import com.fitness.builder.User.User;
+import com.fitness.builder.User.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -21,6 +25,8 @@ public class MemberController {
 
     private final MemberService memberService;
     private final MemberRepository memberRepository;
+    private final UserRepository userRepository;
+    private final ItemRepository itemRepository;
 
     @GetMapping("/login")
     String login(){
@@ -68,13 +74,23 @@ public class MemberController {
         }
 
         CustomUser user = (CustomUser) auth.getPrincipal(); // CustomUser로 캐스팅
+
+        // UserRepository를 사용하여 username을 통해 User 찾기
+        List<User> dbUser = userRepository.findByUsername(user.getUsername());
+
+        // User의 id를 기준으로 Item 조회
+        List<Item> items = itemRepository.findByUserId(dbUser.get(0).getId());
+
+        // 모델에 사용자 정보 및 아이템 목록 추가
         model.addAttribute("id", user.getId());
         model.addAttribute("userId", user.getUserId()); // userId 전달
         model.addAttribute("username", user.getUsername()); // username 전달
         model.addAttribute("introduction", user.getIntroduction()); // introduction 전달
+        model.addAttribute("items", items);  // items 목록 전달
 
         return "mypage.html"; // 마이페이지 HTML 반환
     }
+
 
     @PostMapping("/mypage/update")
     public String updateMyPage(@RequestParam("id") Long id,
