@@ -60,10 +60,10 @@ HealthyFit Blog는 건강과 운동에 대한 정보를 쉽게 공유하고 기�
 ![Css](https://img.shields.io/badge/Css-1572B6?style=for-the-badge&logo=css3&logoColor=fff)
 
 ## 화면 소개 
-| 메인 페이지  |  세부 페이지   |
-| :-------------------------------------------: | :------------: |
-|  <img width="500" src="https://github.com/user-attachments/assets/383cd2b4-1e84-454b-b802-7db889c9c5cd"/>  |  <img width="500" src="https://github.com/user-attachments/assets/991a26d7-abe9-44af-9f38-a045077abb1c"/> |  
-| **댓글 페이지**   |  **글 리스트 사진**  |  
-|  <img width="500" src="https://placehold.co/300"/>    |  <img width="500" src="https://placehold.co/300"/>   |
-| **회원가입** | **로그인** |  
-| <img width="500" src="https://github.com/user-attachments/assets/52053f09-0351-47fd-acd4-65b13f84a38c"/>    |  <img width="500" src="https://github.com/user-attachments/assets/12572c0a-3706-4c31-b7e1-321d00cd21a5"/>   |
+|                                                  메인 페이지                                                  |                                               세부 & 댓글 페이지                                                |
+|:--------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------:|
+| <img width="500" src="https://github.com/user-attachments/assets/383cd2b4-1e84-454b-b802-7db889c9c5cd"/> | <img width="500" src="https://github.com/user-attachments/assets/991a26d7-abe9-44af-9f38-a045077abb1c"/> |  
+|                                                **마이 페이지**                                                |                                               **글 리스트 사진**                                               |  
+|                            <img width="500" src="https://placehold.co/300"/>                             |                            <img width="500" src="https://placehold.co/300"/>                             |
+|                                                 **회원가입**                                                 |                                                 **로그인**                                                  |  
+| <img width="500" src="https://github.com/user-attachments/assets/52053f09-0351-47fd-acd4-65b13f84a38c"/> | <img width="500" src="https://github.com/user-attachments/assets/12572c0a-3706-4c31-b7e1-321d00cd21a5"/> |

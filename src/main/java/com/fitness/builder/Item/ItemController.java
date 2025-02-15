@@ -76,4 +76,10 @@ public class ItemController {
         }
     }
 
+    @GetMapping("/detail")
+    String detail(){
+        return "detail.html";
+    }
+
+
 }
