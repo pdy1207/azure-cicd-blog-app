@@ -41,36 +41,17 @@
                         <th></th>
                         <th>작성일</th>
                         <th></th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
-                    <ul>
-                        <th:block th:each="item : ${items}">
-                            <li>
-                                <h3 th:text="${item.title}"></h3>
-                                <p th:text="${item.content}"></p>
-                                <p th:text="${item}"></p>
-                            </li>
-                        </th:block>
-                    </ul>
-                    <tr>
-                        <td><a href="#" class="post-link">글 제목 1</a></td>
-                        <td>부제목</td>
-                        <td>2025-02-12</td>
-                        <td><a href="#" class="edit-btn">수정</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#" class="post-link">글 제목 1</a></td>
-                        <td>부제목</td>
-                        <td>2025-02-12</td>
-                        <td><a href="#" class="edit-btn">수정</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#" class="post-link">글 제목 1</a></td>
-                        <td>부제목</td>
-                        <td>2025-02-12</td>
-                        <td><a href="#" class="edit-btn">수정</a></td>
-                    </tr>
+                         <tr th:each="item : ${items}">
+                            <td><a href="#" class="post-link" th:text="${item.title}">글 제목 1</a></td>
+                            <td th:text="${item.content}">부제목</td>
+                             <td th:text="${#temporals.format(item.updateAt, 'yyyy년 MM월 dd일 HH시 mm분')}"></td>
+                             <td><a href="#" class="edit-btn">수정</a></td>
+                             <td><a href="#" class="del-btn">삭제</a></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

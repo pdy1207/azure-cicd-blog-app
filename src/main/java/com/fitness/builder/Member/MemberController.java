@@ -5,6 +5,7 @@ import com.fitness.builder.Item.ItemRepository;
 import com.fitness.builder.User.User;
 import com.fitness.builder.User.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.jsoup.Jsoup;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,7 +16,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.jsoup.Jsoup;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -65,6 +68,8 @@ public class MemberController {
         }
     }
 
+
+
     @GetMapping("/my-page")
     public String myPage(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -76,10 +81,26 @@ public class MemberController {
         CustomUser user = (CustomUser) auth.getPrincipal(); // CustomUser로 캐스팅
 
         // UserRepository를 사용하여 username을 통해 User 찾기
-        List<User> dbUser = userRepository.findByUsername(user.getUsername());
+        List<User> dbUsers = userRepository.findByUsername(user.getUsername());
 
-        // User의 id를 기준으로 Item 조회
-        List<Item> items = itemRepository.findByUserId(dbUser.get(0).getId());
+        // 모든 User의 ID를 기준으로 Item 조회 (HTML 태그 제거 + 20자 제한)
+        List<Item> items = new ArrayList<>();
+        for (User dbUser : dbUsers) {
+            List<Item> userItems = itemRepository.findByUserId(dbUser.getId());
+
+            for (Item item : userItems) {
+                // ✅ HTML 태그 제거
+                String plainTextContent = Jsoup.parse(item.getContent()).text();
+
+                // ✅ 20자 제한 + "..."
+                String truncatedContent = plainTextContent.length() > 20 ? plainTextContent.substring(0, 20) + "..." : plainTextContent;
+
+                // ✅ 잘린 문자열을 item의 content에 다시 저장
+                item.setContent(truncatedContent);
+            }
+
+            items.addAll(userItems);
+        }
 
         // 모델에 사용자 정보 및 아이템 목록 추가
         model.addAttribute("id", user.getId());
@@ -90,6 +111,8 @@ public class MemberController {
 
         return "mypage.html"; // 마이페이지 HTML 반환
     }
+
+
 
 
     @PostMapping("/mypage/update")

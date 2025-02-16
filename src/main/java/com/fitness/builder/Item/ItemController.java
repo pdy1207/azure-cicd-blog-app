@@ -123,7 +123,7 @@ public class ItemController {
         String content = post.getContent().replaceAll("<[^>]*>", ""); // HTML 태그 제거
 
         // 소제목을 10글자로 자르기
-        String abbreviatedContent = content.length() > 10 ? content.substring(0, 25) : content; // 10글자 이하로 자르기
+        String abbreviatedContent = content.length() > 10 ? content.substring(0, 15) : content; // 10글자 이하로 자르기
 
 
         // 모델에 post와 username 추가

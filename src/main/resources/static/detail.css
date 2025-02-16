@@ -230,3 +230,11 @@ textarea:focus {
   outline: none;
   border: unset;
 }
+
+.auth-title{
+    font-size: 17px; margin-bottom: 2px;
+   width: 200px;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}

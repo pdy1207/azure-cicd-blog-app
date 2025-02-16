@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -138,45 +138,21 @@
             <h1 class="post-title">Community Q&A</h1>
             <p>헬스장 질문&답변, 정보 공유, 리뷰</p>
         </div>
-        <div class="post-item">
-            <div class="post-item--titleBox">
-                <h3>게시물 제목 1</h3>
-                <p>게시물 내용 1. 간략한 내용이 여기에 들어갑니다.</p>
-                <div><span>By</span> dypark</div>
-            </div>
-            <img
-                    src="https://img1.daumcdn.net/thumb/C120x120.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/6Aqs/image/zPZQsSWIuIt-SESVibcCYw2eztU.JPG"
-                    alt="Post 1"
-            />
-        </div>
-        <div class="post-item">
-            <div class="post-item--titleBox">
-                <h3>게시물 제목 1</h3>
-                <p>게시물 내용 1. 간략한 내용이 여기에 들어갑니다.</p>
-                <div><span>By</span> dypark</div>
-            </div>
-            <img
-                    src="https://img1.daumcdn.net/thumb/C120x120.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/6Aqs/image/zPZQsSWIuIt-SESVibcCYw2eztU.JPG"
-                    alt="Post 1"
-            />
-        </div>
-        <div class="post-item">
-            <div class="post-item--titleBox">
-                <h3>게시물 제목 1</h3>
-                <p>게시물 내용 1. 간략한 내용이 여기에 들어갑니다.</p>
-                <div><span>By</span> dypark</div>
-            </div>
-            <img
-                    src="https://img1.daumcdn.net/thumb/C120x120.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/6Aqs/image/zPZQsSWIuIt-SESVibcCYw2eztU.JPG"
-                    alt="Post 1"
-            />
-        </div>
-        <div class="post-item">
-            <div class="post-item--titleBox">
-                <h3>게시물 제목 1</h3>
-                <p>게시물 내용 1. 간략한 내용이 여기에 들어갑니다.</p>
-                <div><span>By</span> dypark</div>
-            </div>
+        <div class="post-item" th:each="item : ${items}">
+            <a class="post-detail" th:href="@{/detail-list/{id}(id=${item.id})}" target="_blank">
+                <div class="post-item--titleBox">
+                    <h3 th:text="${item.title}">게시물 제목 1</h3>
+                    <p th:text="${test}">게시물 내용 1. 간략한 내용이 여기에 들어갑니다.</p>
+                    <p th:text="${#temporals.format(item.updateAt, 'yyyy년 MM월 dd일 HH시 mm분')}"> 게시물 내용 1. 간략한 내용이 여기에 들어갑니다.</p>
+                    <div><span>By</span> <span th:text="${item.user.username}"></span> </div>
+                </div>
+                <div th:each="imageUrl : ${item.getImageUrls()}">
+                    <img
+                            th:src="${imageUrl}"
+                            alt="Post 1"
+                    />
+                </div>
+            </a>
         </div>
 
         <!-- 추가 게시물 -->

@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface ItemRepository extends JpaRepository<Item, Long> {
     List<Item> findByUserId(Long userId);  // userId로 Item 조회
+    List<Item> findByIdGreaterThanEqual(Long id);
 
 }

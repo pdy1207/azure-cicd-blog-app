@@ -295,3 +295,10 @@ main {
   background-color: #3f51b5;
   border-color: #3f51b5;
 }
+
+.post-detail{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+}
