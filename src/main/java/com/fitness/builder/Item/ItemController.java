@@ -25,7 +25,7 @@ public class ItemController {
     private final S3Service s3Service;
     private final ItemService itemService;
     private final UserRepository userRepository;
-    private final UserService userService;
+    private final ItemRepository itemRepository;
 
 
 //    @PreAuthorize("isAuthenticated()") 로그인한 사용자 확인
@@ -133,6 +133,16 @@ public class ItemController {
 
         return "detailList.html";
     }
+
+    @GetMapping("/edit-write/{id}")
+    public String editWrite(@PathVariable Long id, Model model) {
+        Item item = itemRepository.findByIdWithImages(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 글이 존재하지 않습니다: " + id));
+
+        model.addAttribute("item", item);
+        return "editWrite";
+    }
+
 
 
 
