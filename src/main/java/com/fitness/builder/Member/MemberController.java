@@ -88,17 +88,6 @@ public class MemberController {
         for (User dbUser : dbUsers) {
             List<Item> userItems = itemRepository.findByUserId(dbUser.getId());
 
-            for (Item item : userItems) {
-                // ✅ HTML 태그 제거
-                String plainTextContent = Jsoup.parse(item.getContent()).text();
-
-                // ✅ 20자 제한 + "..."
-                String truncatedContent = plainTextContent.length() > 20 ? plainTextContent.substring(0, 20) + "..." : plainTextContent;
-
-                // ✅ 잘린 문자열을 item의 content에 다시 저장
-                item.setContent(truncatedContent);
-            }
-
             items.addAll(userItems);
         }
 

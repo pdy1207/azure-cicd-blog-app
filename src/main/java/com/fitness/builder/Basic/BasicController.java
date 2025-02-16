@@ -3,7 +3,6 @@ package com.fitness.builder.Basic;
 import com.fitness.builder.Item.Item;
 import com.fitness.builder.Item.ItemImageRepository;
 import com.fitness.builder.Item.ItemRepository;
-import com.fitness.builder.User.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +19,7 @@ public class BasicController {
 
     @GetMapping("/")
     public String index(Model model) {
-        List<Item> items = itemRepository.findByIdGreaterThanEqual(39L);
+        List<Item> items = itemRepository.findByIdGreaterThanEqual(59L);
 
         // items의 user 정보를 가져와서 username을 함께 전달
         for (Item item : items) {
