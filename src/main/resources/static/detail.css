@@ -49,6 +49,10 @@ font-family: "Nanum Gothic Coding", serif !important;
     color: #333;
 }
 
+.wrap div p span {
+font-family: "Nanum Gothic Coding", serif !important;
+}
+
 
 #content {
   font-family: "Nanum Gothic Coding", serif !important;
