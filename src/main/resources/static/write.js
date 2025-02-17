@@ -37,6 +37,7 @@ async function insertImage(event) {
     return;
   }
 
+
   // 이미 업로드된 이미지가 있으면 경고
   if (uploadedImages.length > 0) {
     alert("이미지 하나만 업로드 가능합니다. 기존 이미지를 제거하고 다시 올려주세요.");
@@ -97,6 +98,7 @@ contentArea.addEventListener("keydown", (event) => {
     }
   }
 });
+
 document.querySelector('.publish-button').addEventListener('click', function() {
   const title = document.querySelector('.title-input').value;
   const contentArea = document.querySelector('.content-area');

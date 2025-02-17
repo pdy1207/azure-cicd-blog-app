@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,6 +27,7 @@ public class ItemController {
     private final ItemService itemService;
     private final UserRepository userRepository;
     private final ItemRepository itemRepository;
+    private final ItemImageRepository itemImageRepository;
 
 
 //    @PreAuthorize("isAuthenticated()") 로그인한 사용자 확인
@@ -144,6 +146,31 @@ public class ItemController {
     }
 
 
+    @PostMapping("/edit-post/{id}")
+    public ResponseEntity<Map<String, Object>> editPost(@PathVariable Long id, @RequestBody Map<String, Object> postData) {
+        Map<String, Object> response = new HashMap<>();
+        try {
+            // 아이디에 해당하는 Item 찾기
+            Item item = itemRepository.findById(id)
+                    .orElseThrow(() -> new IllegalArgumentException("해당 글이 존재하지 않습니다: " + id));
+
+            // 제목과 내용 수정
+            item.setTitle((String) postData.get("title"));
+            item.setContent((String) postData.get("content"));
+
+            // 수정된 Item 저장
+            itemRepository.save(item);
+
+            response.put("status", "success");
+            response.put("message", "글이 성공적으로 수정되었습니다!");
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.put("status", "error");
+            response.put("message", "글 수정에 실패했습니다.");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
+    }
 
 
 

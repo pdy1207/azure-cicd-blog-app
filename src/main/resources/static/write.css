@@ -243,7 +243,7 @@ body {
   gap: 4px;
 }
 
-.publish-button {
+.publish-button, .publish-button2 {
   text-decoration: unset;
   cursor: pointer;
   background-color: #00c6be;
@@ -256,4 +256,38 @@ body {
   padding: 0px 20px;
   margin-right: 55px;
   width: 80px;
+}
+
+
+        input[type="file"] {
+          display: none;
+        }
+
+        .font-size-select {
+          padding: 5px;
+          font-size: 14px;
+          border: 1px solid #ccc;
+          cursor: pointer;
+        }
+        .delete-image-btn {
+    background-color: #ff4d4f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 5px;
+    display: block;
+}
+
+.delete-image-btn:hover {
+    background-color: #d9363e;
+    transform: scale(1.05);
+}
+
+.delete-image-btn:active {
+    transform: scale(0.95);
 }

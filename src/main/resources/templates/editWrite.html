@@ -22,19 +22,6 @@
     <meta property="og:url" content="웹 페이지 URL" />
     <title>빌더들의 블로그</title>
     <link rel="stylesheet" href="/write.css" />
-    <style>
-
-        input[type="file"] {
-          display: none;
-        }
-
-        .font-size-select {
-          padding: 5px;
-          font-size: 14px;
-          border: 1px solid #ccc;
-          cursor: pointer;
-        }
-    </style>
 </head>
 <body>
 <header class="header">
@@ -47,7 +34,7 @@
         <button class="toolbar-button" id="boldButton">B</button>
         <button class="toolbar-button" id="italicButton">I</button>
         <button class="toolbar-button" id="underlineButton">U</button>
-        <button class="toolbar-button" id="imageButton">🔗</button>
+        <button class="toolbar-button" id="imageButton" style="display: none">🔗</button>
         <!-- 이미지 첨부 버튼 -->
         <input
                 type="file"
@@ -93,10 +80,10 @@
         <span class="footer-text">BUILDER'S BLOG</span>
     </div>
     <div class="footer-right">
-        <button class="publish-button">완료</button>
+        <button class="publish-button2">수정하기</button>
     </div>
 </footer>
 
-<script src="/write.js"></script>
+<script src="/edit.js"></script>
 </body>
 </html>

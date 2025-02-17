@@ -1,5 +1,6 @@
 package com.fitness.builder.Item;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -37,5 +38,6 @@ public class ItemService {
     public Item getPostById(Long id){
         return itemRepository.findById(id).orElseThrow(() -> new RuntimeException("게시글을 찾을 수 없습니다."));
     }
+
 
 }
