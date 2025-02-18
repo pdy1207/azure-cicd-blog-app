@@ -76,3 +76,26 @@
       replyInputDiv.remove();
     }
 
+document.addEventListener("DOMContentLoaded", function () {
+    const likeBtn = document.getElementById("likeBtn");
+    const likeCount = document.getElementById("likeCount");
+
+    const postId = window.location.pathname.split("/").pop(); // URL에서 ID 추출
+
+    // 초기 좋아요 개수 가져오기
+    fetch(`/items/${postId}`)
+        .then(response => response.json())
+        .then(data => {
+            likeCount.textContent = data.likes;
+        });
+
+    likeBtn.addEventListener("click", function () {
+        fetch(`/items/${postId}/like`, { method: "POST" })
+            .then(response => response.json())
+            .then(data => {
+                window.location.href = `/detail-list/${postId}`;
+                likeCount.textContent = parseInt(likeCount.textContent) + 1;
+            })
+            .catch(error => console.error("좋아요 요청 실패:", error));
+    });
+});

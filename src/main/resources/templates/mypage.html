@@ -50,7 +50,7 @@
                              <td></td>
                              <td th:text="${#temporals.format(item.updateAt, 'yyyy년 MM월 dd일 HH시 mm분')}"></td>
                              <td><a th:href="@{/edit-write/{id}(id=${item.id})}" class="edit-btn" target="_blank">수정</a></td>
-                             <td><a href="#" class="del-btn">삭제</a></td>
+                             <td> <a href="#" class="del-btn" th:data-id="${item.id}">삭제</a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -215,6 +215,31 @@
             passwordMatchMessage.textContent = "비밀번호가 일치합니다.";
         }
     }
+
+    document.querySelectorAll(".del-btn").forEach(button => {
+    button.addEventListener("click", function (event) {
+        event.preventDefault();
+
+        const itemId = this.getAttribute("data-id");
+
+        if (!itemId) {
+            alert("삭제할 항목의 ID가 없습니다.");
+            return;
+        }
+
+        if (confirm("정말 삭제하시겠습니까?")) {
+            fetch(`/delete/${itemId}`, { method: "GET" })
+                .then(response => {
+                    if (!response.ok) {
+                        alert("삭제되었습니다.");
+                        window.location.href = "/my-page";
+                    }
+                })
+                .catch(error => console.error("삭제 중 오류 발생:", error));
+        }
+    });
+});
+
 </script>
 </body>
 </html>

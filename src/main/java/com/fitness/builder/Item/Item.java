@@ -52,4 +52,12 @@ public class Item {
     public List<String> getImageUrls() {
         return images != null ? images.stream().map(ItemImage::getImageUrl).collect(Collectors.toList()) : null;
     }
+
+    // ⭐ 좋아요 관련 필드 추가
+    private int likes = 0; // 기본값 0
+
+    public void incrementLikes() {
+        this.likes++;
+    }
+
 }

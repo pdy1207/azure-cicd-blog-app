@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -39,5 +40,17 @@ public class ItemService {
         return itemRepository.findById(id).orElseThrow(() -> new RuntimeException("게시글을 찾을 수 없습니다."));
     }
 
+    // ⭐ 좋아요 증가
+    @Transactional
+    public boolean likeItem(Long id) {
+        Optional<Item> optionalItem = itemRepository.findById(id);
+        if (optionalItem.isPresent()) {
+            Item item = optionalItem.get();
+            item.incrementLikes();
+            itemRepository.save(item);
+            return true;
+        }
+        return false;
+    }
 
 }

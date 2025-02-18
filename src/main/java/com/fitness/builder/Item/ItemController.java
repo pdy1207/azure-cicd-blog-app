@@ -1,8 +1,11 @@
 package com.fitness.builder.Item;
 
+import com.fitness.builder.Comment.Comment;
+import com.fitness.builder.Comment.CommentService;
 import com.fitness.builder.User.User;
 import com.fitness.builder.User.UserRepository;
 import com.fitness.builder.User.UserService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
@@ -28,6 +31,7 @@ public class ItemController {
     private final UserRepository userRepository;
     private final ItemRepository itemRepository;
     private final ItemImageRepository itemImageRepository;
+    private final CommentService commentService;
 
 
 //    @PreAuthorize("isAuthenticated()") 로그인한 사용자 확인
@@ -117,7 +121,7 @@ public class ItemController {
             System.out.println("이미지가 없습니다.");
         }
 
-        // User 객체 가져오기
+        // User 객체 가져오기 (Item의 user 객체를 가져옴)
         User user = post.getUser();  // Item 객체의 User 필드 접근
         String username = user != null ? user.getUsername() : "사용자 없음";  // 사용자 이름을 조회, 없으면 기본 값 설정
 
@@ -127,14 +131,33 @@ public class ItemController {
         // 소제목을 10글자로 자르기
         String abbreviatedContent = content.length() > 10 ? content.substring(0, 15) : content; // 10글자 이하로 자르기
 
+        int likeCount = post.getLikes();
+
+        List<Comment> comments = commentService.getCommentsByItemId(id);
+
 
         // 모델에 post와 username 추가
         model.addAttribute("post", post);
         model.addAttribute("username", username);
+        model.addAttribute("likeCount", likeCount);
         model.addAttribute("abbreviatedContent", abbreviatedContent);
+        model.addAttribute("comments", comments);
 
         return "detailList.html";
     }
+
+
+    // ⭐ 좋아요 증가 API
+    @PostMapping("items/{id}/like")
+    public ResponseEntity<?> likePost(@PathVariable Long id) {
+        boolean liked = itemService.likeItem(id);
+        if (liked) {
+            return ResponseEntity.ok(Map.of("message", "좋아요 추가됨"));
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", "게시글이 존재하지 않음"));
+        }
+    }
+
 
     @GetMapping("/edit-write/{id}")
     public String editWrite(@PathVariable Long id, Model model) {
@@ -171,6 +194,21 @@ public class ItemController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }
+
+    @Transactional
+    @GetMapping("/delete/{id}")
+    public String delPost(@PathVariable Long id) {
+
+        // 1. item_image 테이블에서 item_id가 id와 일치하는 데이터 삭제
+        itemImageRepository.deleteByItemId(id);
+
+        // 2. item 테이블에서 해당 id를 삭제
+        itemRepository.deleteById(id);
+
+        return "redirect:/mypage";
+    }
+
+
 
 
 

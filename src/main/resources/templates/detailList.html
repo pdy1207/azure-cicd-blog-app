@@ -92,11 +92,13 @@
 <div class="content-box">
     <div class="info-state">
         <span class="wrap_comment_btn">
-          <button>좋아요</button>
+          <button id="likeBtn">좋아요 <span th:text="${likeCount}"></span></button>
           <button>댓글</button>
         </span>
     </div>
 </div>
+
+<!-- 기존 코드 중 댓글 부분 -->
 <div class="info-comment">
     <div class="comment_head">
         <strong class="tit_comment">댓글</strong>
@@ -104,79 +106,28 @@
 </div>
 <div class="comment_content">
     <ul class="comment_list">
-        <li class="animation_up">
+        <!-- 댓글 출력 -->
+        <li class="animation_up" th:each="comment : ${comments}">
             <div class="comment">
-                <a class="link_profile"
-                ><img
-                        class="img_thumb"
-                        alt="스토리 이미지"
-                        height="32px"
-                        src="//img1.daumcdn.net/thumb/C64x64.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/9Zi7/image/VinbLa1S8k5mGcner7H4VzeXzhM.jpg"
-                        width="32px"
-                /></a>
                 <div class="cont_info">
                     <div class="info_append">
                         <div class="tit_userid">
-                            <a class="link_userid" href="/@@9Zi7">스토리</a>
+                            <a class="link_userid"  th:text="${comment.item.user.username}">사용자</a>
                         </div>
-                        <span class="txt_time">Feb 07. 2025</span>
+                        <span class="txt_time" th:text="${#temporals.format(comment.createdAt, 'yy년 MM월 dd일 HH시 mm분 a')}"></span>
                     </div>
-                    <p class="desc_comment">
-                        당근이 좀 저렴한가요?<br />저도 식물 특히 꽃에 진심인
-                        일인이어요.그러니 오늘 출근에 수박페페에 형광스킨답서스 하나
-                        끼워 넣어 데리고 갑니다.ㅎ<br />그거 보며 힐링 하려구요.
-                    </p>
-                    <button class="btn_reply" onclick="showReplyInput(this)">
-                        답글달기
-                    </button>
+                    <p class="desc_comment" th:text="${comment.content}"></p>
                 </div>
-            </div>
-            <div class="wrap_reply" style="padding-left: 40px">
-                <ul class="list_reply">
-                    <li class="animation_up">
-                        <div class="comment" data-comment-no="2794985">
-                            <a class="link_profile" href="/@@54B2"
-                            ><img
-                                    class="img_thumb"
-                                    alt="박개짱 이미지"
-                                    height="32px"
-                                    src="//img1.daumcdn.net/thumb/C64x64.fpng/?fname=https://t1.daumcdn.net/brunch/static/img/help/pc/ico_profile_100_04.png"
-                                    width="32px"
-                            /></a>
-                            <div class="cont_info">
-                                <div class="info_append">
-                                    <div class="tit_userid">
-                                        <a class="link_userid" href="/@@54B2">박개짱</a>
-                                        <em class="emph_auth">작가</em>
-                                    </div>
-                                    <span class="txt_time">Feb 07. 2025</span>
-                                </div>
-                                <p class="desc_comment">
-                                    당근이 저렴한 경우도 있고 아닌 경우도 있더라구요 ㅎㅎ 근데
-                                    사정 생겨서 보내는 분들은 예쁜 아이들 저렴하게
-                                    분양해주시기도 해요~~ 출근길에 식물들 데려가는 거 너무
-                                    좋은것 같아요 들여다볼때마다 힐링되니까요 :) 좋은 하루
-                                    되세요^^
-                                </p>
-                                <button
-                                        class="btn_reply"
-                                        data-tiara-action-name="글뷰 > 댓글 리스트 > 답글 달기 버튼 클릭"
-                                        data-tiara-layer="reply"
-                                        data-tiara-custom="replytype=response_reply"
-                                        type="button"
-                                >
-                                    답글달기
-                                </button>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
             </div>
         </li>
     </ul>
+
+    <!-- 댓글 입력 폼 -->
     <div class="comment_input">
-        <textarea id="commentText" placeholder="댓글을 입력하세요."></textarea>
-        <button onclick="addComment()">등록</button>
+        <form th:action="@{/detail-list/{id}/comment(id=${post.id})}" method="post">
+            <textarea id="commentText" name="commentcontent" placeholder="댓글을 입력하세요."></textarea>
+            <button type="submit">등록</button>
+        </form>
     </div>
 </div>
 
