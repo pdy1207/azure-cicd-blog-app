@@ -112,7 +112,7 @@
                 <div class="cont_info">
                     <div class="info_append">
                         <div class="tit_userid">
-                            <a class="link_userid"  th:text="${comment.item.user.username}">사용자</a>
+                            <a class="link_userid"  th:text="${comment.item.user.username}">사용자</a> 님의 댓글 입니다.
                         </div>
                         <span class="txt_time" th:text="${#temporals.format(comment.createdAt, 'yy년 MM월 dd일 HH시 mm분 a')}"></span>
                     </div>
